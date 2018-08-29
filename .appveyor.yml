@@ -1,0 +1,48 @@
+version: 1.0.{build}-{branch}
+
+image:
+  - Visual Studio 2017
+platform:
+  - Win64
+  - ARM
+configuration:
+  - Debug
+  - Release
+
+# disable build for 'gh-pages' branch
+branches:
+  except:
+    - gh-pages
+
+shallow_clone: false
+clone_folder: c:\projects\otus_homework
+
+# scripts to run before build
+before_build:
+  - echo "Running cmake... for %APPVEYOR_BUILD_WORKER_IMAGE% %PLATFORM% %CONFIGURATION%"
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - git submodule update --init --recursive
+
+build_script:
+  - if %PLATFORM%==Win64 (
+      cmake -H"%APPVEYOR_BUILD_FOLDER%" -Bbuild -G "Visual Studio 15 2017 %PLATFORM%" -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DBUILD_TESTING=ON
+    )
+  - if %PLATFORM%==ARM (
+      cmake -H"%APPVEYOR_BUILD_FOLDER%" -Bbuild -G "Visual Studio 15 2017 %PLATFORM%"
+    )
+  - cmake --build build
+
+test_script:
+  - set CTEST_OUTPUT_ON_FAILURE=ON
+  # Can not run ARM builds on x86/x64 build images
+  - if %PLATFORM%==Win64 (
+      cmake --build build --target RUN_TESTS
+    )
+
+notifications:
+- provider: Email
+  to:
+  - '{{commitAuthorEmail}}'
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: true

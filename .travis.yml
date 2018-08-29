@@ -1,0 +1,92 @@
+dist: trusty
+sudo: required
+language: cpp
+
+matrix:
+  include:
+    # MacOS and XCode 8
+    - os: osx
+      osx_image: xcode8
+    # MacOS and XCode 9
+    - os: osx
+      osx_image: xcode9
+    # Linux and Clang 5
+    - os: linux
+      compiler: clang
+      env: COMPILER=clang++-5.0
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
+          packages: ['g++-6', 'clang-5.0', 'ninja-build']
+    # Linux and Clang 6
+    - os: linux
+      compiler: clang
+      env: COMPILER=clang++-6.0
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-6.0']
+          packages: ['g++-6', 'clang-6.0', 'ninja-build']
+    # Linux and GCC 7
+    - os: linux
+      compiler: gcc
+      env: COMPILER=g++-7
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-7', 'ninja-build']
+    # Linux and GCC 8 (Deploy build)
+    - os: linux
+      compiler: gcc
+      env:
+      - COMPILER=g++-8
+      - DEPLOY=ON
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-8', 'ninja-build', 'graphviz', 'doxygen']
+
+script:
+  # get CMake and Ninja (only for systems with brew - macOS)
+  - |
+     if [[ (-x $(which brew)) ]]; then
+       brew update
+       brew install cmake ninja
+       brew upgrade cmake
+       cmake --version
+     fi
+
+  # make sure CXX is correctly set
+  - if [[ "${COMPILER}" != "" ]]; then export CXX=${COMPILER}; fi
+
+  # if unit test fail - need more information about fail
+  - export CTEST_OUTPUT_ON_FAILURE=1
+
+  # build and run unit tests
+  - cmake -GNinja -H. -Bbuild -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+  - cmake --build build
+  - cmake --build build --target test
+
+  # only for deploy build
+  - |
+     if [[ -n $DEPLOY ]]; then
+       doxygen Doxyfile
+     fi
+
+deploy:
+  # Deploy documention to GitHub Pages
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    local-dir: html
+    on:
+      branch: master
+      condition: $DEPLOY = ON
+
+notifications:
+  webhooks:
+    urls:
+      - https://integrations.bonbotics.io/travis/webhook/VGalbvjq9rO8vDTTrSkqZzevkQ3NsIag7NNFFwrVWnU
+    on_success: always
+    on_failure: always
+    on_start: never
