@@ -6,6 +6,16 @@ project(otus_matrix VERSION 1.0.0 LANGUAGES CXX)
 option(OTUS_MATRIX_BUILD_TESTING "Build the unit tests when BUILD_TESTING is enabled." ON)
 
 set(OTUS_MATRIX_TARGET_NAME ${PROJECT_NAME})
+set(OTUS_MATRIX_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+# set warning flags for popular compilers
+function(set_warning_flags target)
+        if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+                target_compile_options(${target} PRIVATE "-Wall" "-Wextra" "-pedantic-errors")
+        elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+                target_compile_options(${target} PRIVATE "/Wall")
+        endif()
+endfunction()
 
 # Add Interface library for header-only library
 add_library(${OTUS_MATRIX_TARGET_NAME} INTERFACE)
@@ -13,11 +23,11 @@ add_library(${OTUS_MATRIX_TARGET_NAME} INTERFACE)
 add_library(${PROJECT_NAME}::${OTUS_MATRIX_TARGET_NAME} ALIAS ${OTUS_MATRIX_TARGET_NAME})
 # Add source files for targets. Specialy for IDE.
 target_sources(${OTUS_MATRIX_TARGET_NAME} INTERFACE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/otus/matrix.hpp
+    "${OTUS_MATRIX_INCLUDE_DIR}/otus/matrix.hpp"
 )
 # Add include directory for the target
 target_include_directories(${OTUS_MATRIX_TARGET_NAME} INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/
+    "${OTUS_MATRIX_INCLUDE_DIR}"
 )
 # Add requirement C++11 feature for library
 target_compile_features(${OTUS_MATRIX_TARGET_NAME} INTERFACE cxx_std_11)
