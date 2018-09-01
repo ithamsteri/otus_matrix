@@ -30,7 +30,7 @@ target_include_directories(${OTUS_MATRIX_TARGET_NAME} INTERFACE
     "${OTUS_MATRIX_INCLUDE_DIR}"
 )
 # Add requirement C++11 feature for library
-target_compile_features(${OTUS_MATRIX_TARGET_NAME} INTERFACE cxx_std_11)
+target_compile_features(${OTUS_MATRIX_TARGET_NAME} INTERFACE cxx_std_14)
 
 # --- Testing ---
 if(BUILD_TESTING AND OTUS_MATRIX_BUILD_TESTING)
