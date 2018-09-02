@@ -6,7 +6,7 @@
 //  +-+-+-+-+-+-+
 //
 // Filename: matrix.hpp
-// Require:  C++17 Standart
+// Require:  C++14 Standart
 //
 
 #ifndef OTUS_MATRIX_HPP
@@ -19,7 +19,7 @@
 
 namespace otus {
 
-/// Class of the dimensionless matrix.
+/// Class of the Sparse Matrix.
 template <typename T, T DefaultValue, size_t Dimension = 2>
 class Matrix {
   private:
@@ -53,15 +53,19 @@ class Matrix {
 
   public:
     auto operator[](size_t idx) { return NextLayout(idx, elements_); }
-    const auto operator[](size_t idx) const { return NextLayout(idx, elements_); }
+    auto operator[](size_t idx) const { return NextLayout(idx, elements_); }
 
     /// Return an input iterator to the beginning
     /// @return Input iterator to the begining
-    auto begin() const noexcept { return Iterator(elements_.cbegin()); }
+    auto begin() const noexcept {
+        return Iterator<typename Contanter::const_iterator>(elements_.cbegin());
+    }
 
     /// Return an input iterator to the end
     /// @return Input iterator to the end
-    auto end() const noexcept { return Iterator(elements_.cend()); }
+    auto end() const noexcept {
+        return Iterator<typename Contanter::const_iterator>(elements_.cend());
+    }
 
     /// Get real count of elements in matrix
     /// @return count of elements
@@ -84,7 +88,8 @@ class Matrix<T, DefaultValue, Dimension>::Iterator {
     }
 
   public:
-    using value_type = decltype(std::declval<Iterator>().get_value());
+    using value_type =
+        decltype(std::tuple_cat((*map_iterator_).first, std::tie((*map_iterator_).second)));
     using iterator_category = std::input_iterator_tag;
 
     Iterator(Iter map_iterator) : map_iterator_(map_iterator) {}
@@ -122,7 +127,7 @@ class Matrix<T, DefaultValue, Dimension>::Layout {
     auto operator[](size_t idx) {
         return NextLayout(std::tuple_cat(tuple_, std::tie(idx)), elements_);
     }
-    const auto operator[](size_t idx) const {
+    auto operator[](size_t idx) const {
         return NextLayout(std::tuple_cat(tuple_, std::tie(idx)), elements_);
     }
 };
