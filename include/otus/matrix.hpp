@@ -13,8 +13,9 @@
 #define OTUS_MATRIX_HPP
 
 #include <cstddef>
-#include <map>
+#include <functional>
 #include <tuple>
+#include <unordered_map>
 #include <utility>
 
 namespace otus {
@@ -35,8 +36,8 @@ class Matrix {
         using type = std::tuple<Types...>;
     };
 
-    template <typename Iter>
     class Iterator;
+    class TupleHash;
 
     /// Class Layout provide access to other Layouts in the matrix.
     template <size_t N, typename... Types>
@@ -45,7 +46,8 @@ class Matrix {
     template <typename... Types>
     class Layout<0, Types...>;
 
-    using Contanter = std::map<typename generate_tuple_type<size_t, Dimension>::type, T>;
+    using TupleKey = typename generate_tuple_type<size_t, Dimension>::type;
+    using Contanter = std::unordered_map<TupleKey, T, TupleHash>;
     using NextLayout = Layout<Dimension - 1, size_t>;
 
     Contanter elements_;
@@ -57,15 +59,11 @@ class Matrix {
 
     /// Return an input iterator to the beginning
     /// @return Input iterator to the begining
-    auto begin() const noexcept {
-        return Iterator<typename Contanter::const_iterator>(elements_.cbegin());
-    }
+    auto begin() const noexcept { return Iterator(elements_.cbegin()); }
 
     /// Return an input iterator to the end
     /// @return Input iterator to the end
-    auto end() const noexcept {
-        return Iterator<typename Contanter::const_iterator>(elements_.cend());
-    }
+    auto end() const noexcept { return Iterator(elements_.cend()); }
 
     /// Get real count of elements in matrix
     /// @return count of elements
@@ -75,13 +73,39 @@ class Matrix {
     void clear() noexcept { elements_.clear(); }
 };
 
+// ****************************
+// * Struct Matrix::TupleHash *
+// ****************************
+// Boost for combining hash values
+// https://www.boost.org/doc/libs/1_38_0/doc/html/hash/reference.html#boost.hash_combine
+template <typename T, T DefaultValue, size_t Dimension>
+class Matrix<T, DefaultValue, Dimension>::TupleHash {
+    inline size_t get_hash(size_t &seed, size_t value) const {
+        return std::hash<size_t>()(value) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+    }
+
+    template <std::size_t... Indices>
+    void combine_hash(size_t &seed, const TupleKey &tuple, std::index_sequence<Indices...>) const {
+        using swallow = size_t[];
+        (void)swallow{(seed ^= get_hash(seed, std::get<Indices>(tuple)))...};
+    }
+
+  public:
+    size_t operator()(const TupleKey &tuple) const {
+        size_t seed = 0;
+        combine_hash(seed, tuple, std::make_index_sequence<Dimension>{});
+
+        return seed;
+    }
+};
+
 // **************************
 // * Class Matrix::Iterator *
 // **************************
 template <typename T, T DefaultValue, size_t Dimension>
-template <typename Iter>
 class Matrix<T, DefaultValue, Dimension>::Iterator {
-    Iter map_iterator_;
+    using MapIteratorType = typename Contanter::const_iterator;
+    MapIteratorType map_iterator_;
 
     auto get_value() const {
         return std::tuple_cat((*map_iterator_).first, std::tie((*map_iterator_).second));
@@ -92,7 +116,7 @@ class Matrix<T, DefaultValue, Dimension>::Iterator {
         decltype(std::tuple_cat((*map_iterator_).first, std::tie((*map_iterator_).second)));
     using iterator_category = std::input_iterator_tag;
 
-    Iterator(Iter map_iterator) : map_iterator_(map_iterator) {}
+    Iterator(MapIteratorType map_iterator) : map_iterator_(map_iterator) {}
 
     Iterator &operator++() {
         map_iterator_++;
