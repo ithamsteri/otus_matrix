@@ -36,13 +36,14 @@ class Matrix {
         using type = std::tuple<Types...>;
     };
 
+    /// Iterator used as adaptor for concatanate key and value from map
     class Iterator;
+    /// TupleHash used as Hash function for std::unordered_map
     class TupleHash;
-
-    /// Class Layout provide access to other Layouts in the matrix.
+    /// Using these Layouts for access to other Layouts in the matrix
     template <size_t N, typename... Types>
     class Layout;
-    /// Class Layout with parameter N = 1 for access to element of the matrix.
+    /// Using this Layout as Smart Object for get/set values of the matrix
     template <typename... Types>
     class Layout<0, Types...>;
 
@@ -107,7 +108,7 @@ class Matrix<T, DefaultValue, Dimension>::Iterator {
     using MapIteratorType = typename Contanter::const_iterator;
     MapIteratorType map_iterator_;
 
-    auto get_value() const {
+    inline auto get_value() const {
         return std::tuple_cat((*map_iterator_).first, std::tie((*map_iterator_).second));
     }
 
@@ -156,19 +157,19 @@ class Matrix<T, DefaultValue, Dimension>::Layout {
     }
 };
 
+// *************************************
+// * Class Matrix::Layout<0, Types...> *
+// *************************************
 template <typename T, T DefaultValue, size_t Dimension>
 template <typename... Types>
 class Matrix<T, DefaultValue, Dimension>::Layout<0, Types...> {
-    const Matrix::Contanter &elements_;
     std::tuple<Types...> tuple_;
-    T value_;
+    const Matrix::Contanter &elements_;
+    const T default_{DefaultValue};
 
   public:
     Layout(std::tuple<Types...> tuple, const Matrix::Contanter &elements)
-        : elements_{elements}, tuple_{tuple} {
-        auto iter = elements_.find(tuple_);
-        value_ = (iter != elements_.cend()) ? iter->second : DefaultValue;
-    }
+        : tuple_{tuple}, elements_{elements} {}
 
     auto operator=(const T &value) {
         if (value != DefaultValue) {
@@ -178,11 +179,13 @@ class Matrix<T, DefaultValue, Dimension>::Layout<0, Types...> {
             if (iter != elements_.cend())
                 const_cast<Matrix::Contanter &>(elements_).erase(iter);
         }
-        value_ = value;
         return *this;
     }
 
-    operator const T &() const noexcept { return value_; }
+    operator const T &() const noexcept {
+        auto iter = elements_.find(tuple_);
+        return (iter != elements_.cend()) ? iter->second : default_;
+    }
 };
 
 } // namespace otus
