@@ -24,7 +24,7 @@ namespace otus {
 template <typename T, T DefaultValue, size_t Dimension = 2>
 class Matrix {
   private:
-    static_assert(Dimension >= 2, "The dimension of the matrix must be equal or greater than 2");
+    static_assert(Dimension > 0, "The dimension of the matrix must be greater than 0");
 
     template <typename TupleType, unsigned N, typename... Types>
     struct generate_tuple_type {
