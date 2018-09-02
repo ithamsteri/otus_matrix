@@ -68,5 +68,17 @@ SCENARIO("2D Matrix operations", "[matrix][2D]") {
                 REQUIRE(matrix.size() == start_size + 1);
             }
         }
+
+        WHEN("use for-range loop with matrix") {
+            for (const auto element : matrix) {
+                size_t x, y;
+                int value;
+
+                THEN("get std::tuple with coordinates and value") {
+                    std::tie(x, y, value) = element;
+                    REQUIRE(matrix[x][y] == value);
+                }
+            }
+        }
     }
 }

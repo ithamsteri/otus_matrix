@@ -6,7 +6,7 @@
 //  +-+-+-+-+-+-+
 //
 // Filename: matrix.hpp
-// Require:  C++14 Standart
+// Require:  C++17 Standart
 //
 
 #ifndef OTUS_MATRIX_HPP
@@ -15,7 +15,7 @@
 #include <cstddef>
 #include <map>
 #include <tuple>
-#include <type_traits>
+#include <utility>
 
 namespace otus {
 
@@ -35,6 +35,9 @@ class Matrix {
         using type = std::tuple<Types...>;
     };
 
+    template <typename Iter>
+    class Iterator;
+
     /// Class Layout provide access to other Layouts in the matrix.
     template <size_t N, typename... Types>
     class Layout;
@@ -52,14 +55,58 @@ class Matrix {
     auto operator[](size_t idx) { return NextLayout(idx, elements_); }
     const auto operator[](size_t idx) const { return NextLayout(idx, elements_); }
 
+    /// Return an input iterator to the beginning
+    /// @return Input iterator to the begining
+    auto begin() const noexcept { return Iterator(elements_.cbegin()); }
+
+    /// Return an input iterator to the end
+    /// @return Input iterator to the end
+    auto end() const noexcept { return Iterator(elements_.cend()); }
+
     /// Get real count of elements in matrix
     /// @return count of elements
     size_t size() const noexcept { return elements_.size(); }
 
     /// Clears the mapped matrix.
-    void clear() { elements_.clear(); }
+    void clear() noexcept { elements_.clear(); }
 };
 
+// **************************
+// * Class Matrix::Iterator *
+// **************************
+template <typename T, T DefaultValue, size_t Dimension>
+template <typename Iter>
+class Matrix<T, DefaultValue, Dimension>::Iterator {
+    Iter map_iterator_;
+
+    auto get_value() const {
+        return std::tuple_cat((*map_iterator_).first, std::tie((*map_iterator_).second));
+    }
+
+  public:
+    using value_type = decltype(std::declval<Iterator>().get_value());
+    using iterator_category = std::input_iterator_tag;
+
+    Iterator(Iter map_iterator) : map_iterator_(map_iterator) {}
+
+    Iterator &operator++() {
+        map_iterator_++;
+        return *this;
+    }
+    Iterator operator++(int) {
+        Iterator retval = *this;
+        ++(*this);
+        return retval;
+    }
+    bool operator==(Iterator other) const { return map_iterator_ == other.map_iterator_; }
+    bool operator!=(Iterator other) const { return !(*this == other); }
+
+    value_type operator*() const { return get_value(); }
+};
+
+// ************************
+// * Class Matrix::Layout *
+// ************************
 template <typename T, T DefaultValue, size_t Dimension>
 template <size_t N, typename... Types>
 class Matrix<T, DefaultValue, Dimension>::Layout {
