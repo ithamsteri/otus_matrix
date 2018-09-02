@@ -14,6 +14,7 @@
 
 #include <cstddef>
 #include <functional>
+#include <initializer_list>
 #include <tuple>
 #include <unordered_map>
 #include <utility>
@@ -55,6 +56,13 @@ class Matrix {
     const T defaultValue_{DefaultValue};
 
   public:
+    Matrix() = default;
+    Matrix(const Matrix &other) : elements_(other.elements_) {}
+    Matrix(Matrix &&other) : elements_(std::move(other.elements_)) {}
+
+    Matrix &operator=(Matrix other) { elements_(other.elements_); }
+    Matrix &operator=(Matrix &&other) { elements_(std::move(other.elements_)); }
+
     auto operator[](size_t idx) { return NextLayout(idx, elements_); }
     auto operator[](size_t idx) const { return NextLayout(idx, elements_); }
 
