@@ -6,7 +6,8 @@
 //  +-+-+-+-+-+-+
 //
 // Filename: matrix.hpp
-// Require:  C++14 Standart
+// Require:  C++14 Standard
+// Author:   Alexnader Yashkin
 //
 
 #ifndef OTUS_MATRIX_HPP
@@ -62,6 +63,13 @@ class Matrix {
 
     Matrix &operator=(Matrix other) { elements_(other.elements_); }
     Matrix &operator=(Matrix &&other) { elements_(std::move(other.elements_)); }
+
+    Matrix(std::initializer_list<std::pair<const TupleKey, T>> list) {
+        elements_.reserve(list.size());
+        for (const auto &element : list) {
+            elements_.emplace(element);
+        }
+    }
 
     auto operator[](size_t idx) { return NextLayout(idx, elements_); }
     auto operator[](size_t idx) const { return NextLayout(idx, elements_); }
