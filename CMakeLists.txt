@@ -13,7 +13,7 @@ function(set_warning_flags target)
         if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
                 target_compile_options(${target} PRIVATE "-Wall" "-Wextra" "-pedantic-errors")
         elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-                target_compile_options(${target} PRIVATE "/Wall" "/wd4389" "/wd4309" "/wd4566" "/wd4996")
+                target_compile_options(${target} PRIVATE "/W4" "/wd4389" "/wd4309" "/wd4566" "/wd4996")
         endif()
 endfunction()
 

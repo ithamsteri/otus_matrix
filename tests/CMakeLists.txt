@@ -4,7 +4,9 @@ add_subdirectory(Catch2 EXCLUDE_FROM_ALL)
 add_library(catch_main OBJECT
     "Main.test.cpp"
 )
-target_link_libraries(catch_main PRIVATE Catch2::Catch2)
+target_include_directories(catch_main PRIVATE
+    $<TARGET_PROPERTY:Catch2,INTERFACE_INCLUDE_DIRECTORIES>
+)
 
 set(tests
     "ConstMatrix.test.cpp"
@@ -16,7 +18,10 @@ foreach(file ${tests})
     set(testcase "matrix_test_${test_name}")
 
     add_executable(${testcase} $<TARGET_OBJECTS:catch_main> ${file})
-    target_link_libraries(${testcase} PRIVATE Catch2::Catch2 otus_matrix::otus_matrix)
+    target_include_directories(${testcase} PRIVATE
+        $<TARGET_PROPERTY:Catch2::Catch2,INTERFACE_INCLUDE_DIRECTORIES>
+        $<TARGET_PROPERTY:otus_matrix::otus_matrix,INTERFACE_INCLUDE_DIRECTORIES>
+    )
     set_warning_flags(${testcase})
 
     # Make target as CMake Test
