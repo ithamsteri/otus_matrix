@@ -1,84 +1,89 @@
 #include <catch2/catch.hpp>
 #include <otus/matrix.hpp>
+#include <tuple>
 
-SCENARIO("2D Matrix operations", "[matrix][2D]") {
-    GIVEN("A Matrix with some elements") {
-        constexpr int DEFAULT_VALUE = -1;
-        otus::Matrix<int, DEFAULT_VALUE> matrix;
+TEST_CASE("2D Matrix operations", "[matrix][2D]") {
+    constexpr int DEFAULT_VALUE = -1;
+    otus::Matrix<int, DEFAULT_VALUE> matrix{
+        {std::make_tuple(14, 68), 52},
+        {std::make_tuple(139, 1), 871},
+        {std::make_tuple(71, 89), 51},
+    };
 
-        matrix[14][68] = 52;
-        matrix[139][1] = 871;
-        matrix[71][89] = 51;
+    const auto start_size = matrix.size();
+    REQUIRE(matrix.size() == 3);
 
+    SECTION("Check operator[] for getting values from the matrix") {
         REQUIRE(matrix[14][68] == 52);
         REQUIRE(matrix[139][1] == 871);
         REQUIRE(matrix[71][89] == 51);
-        REQUIRE(matrix.size() == 3);
+    }
 
-        const auto start_size = matrix.size();
+    SECTION("Clear elements in the matrix") {
+        matrix.clear();
+        REQUIRE(matrix[14][68] == DEFAULT_VALUE);
+        REQUIRE(matrix[139][1] == DEFAULT_VALUE);
+        REQUIRE(matrix[71][89] == DEFAULT_VALUE);
+        REQUIRE(matrix.size() == 0);
+    }
 
-        WHEN("get any empty element") {
-            auto element = matrix[26][8];
-            THEN("empty element equal default value and no change size") {
-                REQUIRE(element == DEFAULT_VALUE);
-                REQUIRE(matrix.size() == start_size);
-            }
+    SECTION("Any empty element equal default value") {
+        auto element = matrix[26][8];
+        REQUIRE(element == DEFAULT_VALUE);
+        REQUIRE(matrix.size() == start_size);
+    }
+
+    SECTION("Assign value for empty element add new element in the matrix") {
+        matrix[100][100] = 314;
+        REQUIRE(matrix[100][100] == 314);
+        REQUIRE(matrix.size() == start_size + 1);
+    }
+
+    SECTION("Modify an added element only change the element") {
+        matrix[139][1] = 178;
+        REQUIRE(matrix[139][1] == 178);
+        REQUIRE(matrix.size() == start_size);
+    }
+
+    SECTION("Assign the default value to an existing element deletes it") {
+        int value = matrix[14][68];
+        matrix[14][68] = DEFAULT_VALUE;
+        REQUIRE(value != DEFAULT_VALUE);
+        REQUIRE(matrix[14][68] == DEFAULT_VALUE);
+        REQUIRE(matrix.size() == start_size - 1);
+    }
+
+    SECTION("Use the canonical assignment operator for empty element") {
+        ((matrix[51][47] = 23) = 161) = 78;
+        REQUIRE(matrix[51][47] == 78);
+        REQUIRE(matrix.size() == start_size + 1);
+    }
+
+    SECTION("Use for-range loop with the matrix") {
+        size_t counter = 0;
+        for (const auto element : matrix) {
+            size_t x, y;
+            int value;
+
+            std::tie(x, y, value) = element;
+            REQUIRE(matrix[x][y] == value);
+
+            ++counter;
         }
+        REQUIRE(counter == start_size);
+    }
 
-        WHEN("clear matrix") {
-            matrix.clear();
-            THEN("delete all elements in matrix") {
-                REQUIRE(matrix[14][68] == DEFAULT_VALUE);
-                REQUIRE(matrix[139][1] == DEFAULT_VALUE);
-                REQUIRE(matrix[71][89] == DEFAULT_VALUE);
-                REQUIRE(matrix.size() == 0);
-            }
+    SECTION("Use iterators of matrix") {
+        size_t counter = 0;
+        for (auto iter = matrix.begin(); iter != matrix.end(); ++iter) {
+            ++counter;
+
+            size_t x, y;
+            int value;
+
+            std::tie(x, y, value) = *iter;
+            REQUIRE(matrix[x][y] == value);
         }
-
-        WHEN("assign value for empty element") {
-            matrix[100][100] = 314;
-            THEN("add new element and increment size") {
-                REQUIRE(matrix[100][100] == 314);
-                REQUIRE(matrix.size() == start_size + 1);
-            }
-        }
-
-        WHEN("modify an added element") {
-            matrix[139][1] = 178;
-            THEN("change value and don't change size") {
-                REQUIRE(matrix[139][1] == 178);
-                REQUIRE(matrix.size() == start_size);
-            }
-        }
-
-        WHEN("assign default value for an added element") {
-            int value = matrix[14][68];
-            matrix[14][68] = DEFAULT_VALUE;
-            THEN("delete element from matrix, get value before not change and decrement size") {
-                REQUIRE(value != DEFAULT_VALUE);
-                REQUIRE(matrix[14][68] == DEFAULT_VALUE);
-                REQUIRE(matrix.size() == start_size - 1);
-            }
-        }
-
-        WHEN("use the canonical assignment operator for empty element") {
-            ((matrix[51][47] = 23) = 161) = 78;
-            THEN("add new one element to matrix") {
-                REQUIRE(matrix[51][47] == 78);
-                REQUIRE(matrix.size() == start_size + 1);
-            }
-        }
-
-        WHEN("use for-range loop with matrix") {
-            for (const auto element : matrix) {
-                size_t x, y;
-                int value;
-
-                THEN("get std::tuple with coordinates and value") {
-                    std::tie(x, y, value) = element;
-                    REQUIRE(matrix[x][y] == value);
-                }
-            }
-        }
+        REQUIRE(counter == start_size);
     }
 }

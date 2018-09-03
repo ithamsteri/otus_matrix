@@ -7,7 +7,7 @@
 //
 // Filename: matrix.hpp
 // Require:  C++14 Standard
-// Author:   Alexnader Yashkin
+// Author:   Alexander Yashkin
 //
 
 #ifndef OTUS_MATRIX_HPP
@@ -71,8 +71,8 @@ class Matrix {
         }
     }
 
-    auto operator[](size_t idx) { return NextLayout(idx, elements_); }
-    auto operator[](size_t idx) const { return NextLayout(idx, elements_); }
+    NextLayout operator[](size_t idx) { return NextLayout(idx, elements_); }
+    const NextLayout operator[](size_t idx) const { return NextLayout(idx, elements_); }
 
     /// Return an input iterator to the beginning
     /// @return Input iterator to the begining
@@ -165,10 +165,10 @@ class Matrix<T, DefaultValue, Dimension>::Layout {
     Layout(std::tuple<Types...> tuple, const Matrix::Contanter &elements)
         : elements_{elements}, tuple_{tuple} {}
 
-    auto operator[](size_t idx) {
+    NextLayout operator[](size_t idx) {
         return NextLayout(std::tuple_cat(tuple_, std::tie(idx)), elements_);
     }
-    auto operator[](size_t idx) const {
+    const NextLayout operator[](size_t idx) const {
         return NextLayout(std::tuple_cat(tuple_, std::tie(idx)), elements_);
     }
 };
