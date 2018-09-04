@@ -2,22 +2,23 @@
 #include <otus/matrix.hpp>
 #include <tuple>
 
-TEST_CASE("2D Matrix operations", "[matrix][2D]") {
-    constexpr int DEFAULT_VALUE = -1;
-    otus::Matrix<int, DEFAULT_VALUE> matrix{
-        {std::make_tuple(14, 68), 52},
-        {std::make_tuple(139, 1), 871},
-        {std::make_tuple(71, 89), 51},
+TEST_CASE("Three dismension Matrix operations", "[matrix][3D]") {
+    constexpr long DEFAULT_VALUE = 1;
+    otus::Matrix<long, DEFAULT_VALUE, 3> matrix{
+        {std::make_tuple(1, 10, 123), 10},
+        {std::make_tuple(13, 42, 18), 70},
+        {std::make_tuple(52, 1, 132), 46},
+        {std::make_tuple(92, 32, 7), 840},
     };
 
     const auto start_size = matrix.size();
-    REQUIRE(matrix.size() == 3);
+    REQUIRE(matrix.size() == 4);
 
     SECTION("Check constructors") {
         SECTION("Default contructor") {
-            otus::Matrix<bool, false> boolMatrix;
+            otus::Matrix<bool, false, 3> boolMatrix;
             REQUIRE(boolMatrix.size() == 0);
-            REQUIRE(boolMatrix[23][62] == false);
+            REQUIRE(boolMatrix[23][56][17] == false);
         }
 
         SECTION("Copy constructor") {
@@ -51,59 +52,61 @@ TEST_CASE("2D Matrix operations", "[matrix][2D]") {
     }
 
     SECTION("Check operator[] for getting values from the matrix") {
-        REQUIRE(matrix[14][68] == 52);
-        REQUIRE(matrix[139][1] == 871);
-        REQUIRE(matrix[71][89] == 51);
+        REQUIRE(matrix[1][10][123] == 10);
+        REQUIRE(matrix[13][42][18] == 70);
+        REQUIRE(matrix[52][1][132] == 46);
+        REQUIRE(matrix[92][32][7] == 840);
     }
 
     SECTION("Clear elements in the matrix") {
         matrix.clear();
-        REQUIRE(matrix[14][68] == DEFAULT_VALUE);
-        REQUIRE(matrix[139][1] == DEFAULT_VALUE);
-        REQUIRE(matrix[71][89] == DEFAULT_VALUE);
+        REQUIRE(matrix[1][10][123] == DEFAULT_VALUE);
+        REQUIRE(matrix[13][42][18] == DEFAULT_VALUE);
+        REQUIRE(matrix[52][1][132] == DEFAULT_VALUE);
+        REQUIRE(matrix[92][32][7] == DEFAULT_VALUE);
         REQUIRE(matrix.size() == 0);
     }
 
     SECTION("Any empty element equal default value") {
-        auto element = matrix[26][8];
+        auto element = matrix[8][234][8613];
         REQUIRE(element == DEFAULT_VALUE);
         REQUIRE(matrix.size() == start_size);
     }
 
     SECTION("Assign value for empty element add new element in the matrix") {
-        matrix[100][100] = 314;
-        REQUIRE(matrix[100][100] == 314);
+        matrix[100][236][350] = 314;
+        REQUIRE(matrix[100][236][350] == 314);
         REQUIRE(matrix.size() == start_size + 1);
     }
 
     SECTION("Modify an added element only change the element") {
-        matrix[139][1] = 178;
-        REQUIRE(matrix[139][1] == 178);
+        matrix[92][32][7] = 671;
+        REQUIRE(matrix[92][32][7] == 671);
         REQUIRE(matrix.size() == start_size);
     }
 
     SECTION("Assign the default value to an existing element deletes it") {
-        int value = matrix[14][68];
-        matrix[14][68] = DEFAULT_VALUE;
+        int value = matrix[13][42][18];
+        matrix[13][42][18] = DEFAULT_VALUE;
         REQUIRE(value != DEFAULT_VALUE);
-        REQUIRE(matrix[14][68] == DEFAULT_VALUE);
+        REQUIRE(matrix[13][42][18] == DEFAULT_VALUE);
         REQUIRE(matrix.size() == start_size - 1);
     }
 
     SECTION("Use the canonical assignment operator for empty element") {
-        ((matrix[51][47] = 23) = 161) = 78;
-        REQUIRE(matrix[51][47] == 78);
+        ((matrix[63][434][826] = 5533) = 731) = 32;
+        REQUIRE(matrix[63][434][826] == 32);
         REQUIRE(matrix.size() == start_size + 1);
     }
 
     SECTION("Use for-range loop with the matrix") {
         size_t counter = 0;
         for (const auto element : matrix) {
-            size_t x, y;
+            size_t x, y, z;
             int value;
 
-            std::tie(x, y, value) = element;
-            REQUIRE(matrix[x][y] == value);
+            std::tie(x, y, z, value) = element;
+            REQUIRE(matrix[x][y][z] == value);
 
             ++counter;
         }
@@ -115,11 +118,11 @@ TEST_CASE("2D Matrix operations", "[matrix][2D]") {
         for (auto iter = matrix.begin(); iter != matrix.end(); ++iter) {
             ++counter;
 
-            size_t x, y;
+            size_t x, y, z;
             int value;
 
-            std::tie(x, y, value) = *iter;
-            REQUIRE(matrix[x][y] == value);
+            std::tie(x, y, z, value) = *iter;
+            REQUIRE(matrix[x][y][z] == value);
         }
         REQUIRE(counter == start_size);
     }

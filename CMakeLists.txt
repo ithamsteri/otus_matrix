@@ -13,7 +13,7 @@ function(set_warning_flags target)
         if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
                 target_compile_options(${target} PRIVATE "-Wall" "-Wextra" "-pedantic-errors")
         elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-                target_compile_options(${target} PRIVATE "/Wall")
+                target_compile_options(${target} PRIVATE "/W4")
         endif()
 endfunction()
 
@@ -30,7 +30,7 @@ target_include_directories(${OTUS_MATRIX_TARGET_NAME} INTERFACE
     "${OTUS_MATRIX_INCLUDE_DIR}"
 )
 # Add requirement C++11 feature for library
-target_compile_features(${OTUS_MATRIX_TARGET_NAME} INTERFACE cxx_std_11)
+target_compile_features(${OTUS_MATRIX_TARGET_NAME} INTERFACE cxx_std_14)
 
 # --- Testing ---
 if(BUILD_TESTING AND OTUS_MATRIX_BUILD_TESTING)
