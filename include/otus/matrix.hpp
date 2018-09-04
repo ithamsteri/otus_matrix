@@ -58,11 +58,9 @@ class Matrix {
 
   public:
     Matrix() = default;
-    Matrix(const Matrix &other) : elements_(other.elements_) {}
-    Matrix(Matrix &&other) : elements_(std::move(other.elements_)) {}
-
-    Matrix &operator=(Matrix other) { elements_(other.elements_); }
-    Matrix &operator=(Matrix &&other) { elements_(std::move(other.elements_)); }
+    ~Matrix() = default;
+    Matrix(const Matrix &other) noexcept : elements_(other.elements_) {}
+    Matrix(Matrix &&other) noexcept : elements_(std::move(other.elements_)) {}
 
     Matrix(std::initializer_list<std::pair<const TupleKey, T>> list) {
         elements_.reserve(list.size());
@@ -70,6 +68,18 @@ class Matrix {
             elements_.emplace(element);
         }
     }
+
+    Matrix &operator=(const Matrix &other) {
+        elements_ = other.elements_;
+        return *this;
+    }
+    Matrix &operator=(Matrix &&other) noexcept {
+        elements_ = std::move(other.elements_);
+        return *this;
+    }
+
+    bool operator==(const Matrix &other) const { return elements_ == other.elements_; }
+    bool operator!=(const Matrix &other) const { return !(*this == other); }
 
     NextLayout operator[](size_t idx) { return NextLayout(idx, elements_); }
     const NextLayout operator[](size_t idx) const { return NextLayout(idx, elements_); }
@@ -133,7 +143,7 @@ class Matrix<T, DefaultValue, Dimension>::Iterator {
         decltype(std::tuple_cat((*map_iterator_).first, std::tie((*map_iterator_).second)));
     using iterator_category = std::input_iterator_tag;
 
-    Iterator(MapIteratorType map_iterator) : map_iterator_(map_iterator) {}
+    explicit Iterator(MapIteratorType map_iterator) : map_iterator_(map_iterator) {}
 
     Iterator &operator++() {
         map_iterator_++;
@@ -187,18 +197,19 @@ class Matrix<T, DefaultValue, Dimension>::Layout<0, Types...> {
     Layout(std::tuple<Types...> tuple, const Matrix::Contanter &elements)
         : tuple_{tuple}, elements_{elements} {}
 
-    auto operator=(const T &value) {
+    auto &operator=(const T &value) { // NOLINT
         if (value != DefaultValue) {
             const_cast<Matrix::Contanter &>(elements_)[tuple_] = value;
         } else {
             auto iter = elements_.find(tuple_);
-            if (iter != elements_.cend())
+            if (iter != elements_.cend()) {
                 const_cast<Matrix::Contanter &>(elements_).erase(iter);
+            }
         }
         return *this;
     }
 
-    operator const T &() const noexcept {
+    operator const T &() const noexcept { // NOLINT
         auto iter = elements_.find(tuple_);
         return (iter != elements_.cend()) ? iter->second : default_;
     }
