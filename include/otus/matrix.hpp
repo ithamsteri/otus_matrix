@@ -5,9 +5,10 @@
 //  |M|A|T|R|I|X|
 //  +-+-+-+-+-+-+
 //
-// Filename: matrix.hpp
-// Require:  C++14 Standard
-// Author:   Alexander Yashkin
+// Filename:    matrix.hpp
+// Require:     C++14 Standard
+// Author:      Alexander Yashkin
+// Description: The multi-dimensional sparse matrix.
 //
 
 #ifndef OTUS_MATRIX_HPP
@@ -22,7 +23,7 @@
 
 namespace otus {
 
-/// Class of the Sparse Matrix.
+/// Class of The multi-dimensional sparse matrix
 template <typename T, T DefaultValue, size_t Dimension = 2>
 class Matrix {
   private:
