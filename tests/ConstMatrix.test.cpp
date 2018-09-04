@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 #include <otus/matrix.hpp>
 
-TEST_CASE("Const 2D Matrix operations", "[matrix][2D][const]") {
+TEST_CASE("Const two dismension Matrix operations", "[matrix][2D][const]") {
     constexpr long DEFAULT_VALUE = 1;
     using MatrixType = otus::Matrix<long, DEFAULT_VALUE>;
 

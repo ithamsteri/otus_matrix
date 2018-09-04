@@ -1,4 +1,4 @@
-# Build Google Test Framework
+# Include Catch2 header-only library
 add_subdirectory(Catch2 EXCLUDE_FROM_ALL)
 
 add_library(catch_main OBJECT
@@ -15,6 +15,8 @@ target_include_directories(catch_main PRIVATE
 set(tests
     "ConstMatrix.test.cpp"
     "Matrix.test.cpp"
+    "Matrix1D.test.cpp"
+    "Matrix3D.test.cpp"
 )
 
 foreach(file ${tests})
