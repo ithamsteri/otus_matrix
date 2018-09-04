@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['matrix',['Matrix',['../classotus_1_1Matrix.html',1,'otus']]]
+  ['iterator',['Iterator',['../classotus_1_1Matrix_1_1Iterator.html',1,'otus::Matrix']]]
 ];

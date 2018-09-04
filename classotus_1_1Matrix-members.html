@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,13 +86,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">otus::Matrix Member List</div>  </div>
+<div class="title">otus::Matrix&lt; T, DefaultValue, Dimension &gt; Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a4ab09450295d63606e5bbd1930ba69c8">size</a>() const noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a3ee2d41295fdd772320d61d7e4413046">begin</a>() const noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a52a2a467dd9438a0e420f5fc2be64910">clear</a>() noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#aa68c81dd1f99fdbe37d5faf97d0e9480">end</a>() const noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classotus_1_1Matrix.html#aab02b7253a4006f621f7527d492746fa">Matrix</a>()=default</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a0aa8a9da5fe57452f823c89648a2548f">Matrix</a>(const Matrix &amp;other) noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a20ff6fdcf291785e1594cac0213a1964">Matrix</a>(Matrix &amp;&amp;other) noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#ac027f32ea9a305076214ad611b727625">Matrix</a>(std::initializer_list&lt; std::pair&lt; const TupleKey, T &gt;&gt; list)</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a28c7e5858599bb718274cda43843d55b">operator!=</a>(const Matrix &amp;other) const </td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#aec0180d333009f2b78d83f965ea29c33">operator=</a>(const Matrix &amp;other)</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a963e9cab63f085571ea4c7d155602808">operator=</a>(Matrix &amp;&amp;other) noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a75941435295e90ac42fd2cf1c21cc240">operator==</a>(const Matrix &amp;other) const </td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classotus_1_1Matrix.html#aad2bc4c94583d62360d851e327401f28">operator[]</a>(size_t idx)</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a3eaff1f4d3a3cc032157e36fd6b39f3a">operator[]</a>(size_t idx) const </td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classotus_1_1Matrix.html#a1278d818714434ba899e4e5fe55cf091">size</a>() const noexcept</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classotus_1_1Matrix.html#aad042527cde8b6aadc692513a448ade0">~Matrix</a>()=default</td><td class="entry"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix&lt; T, DefaultValue, Dimension &gt;</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

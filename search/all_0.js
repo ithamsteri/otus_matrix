@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['matrix',['Matrix',['../classotus_1_1Matrix.html',1,'otus']]],
-  ['matrix_2ehpp',['matrix.hpp',['../matrix_8hpp.html',1,'']]]
+  ['begin',['begin',['../classotus_1_1Matrix.html#a3ee2d41295fdd772320d61d7e4413046',1,'otus::Matrix']]]
 ];

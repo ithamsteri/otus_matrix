@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>OTUS Matrix: otus::Matrix Class Reference</title>
+<title>OTUS Matrix: otus::Matrix&lt; T, DefaultValue, Dimension &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,30 +86,445 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classotus_1_1Matrix-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">otus::Matrix Class Reference</div>  </div>
+<div class="title">otus::Matrix&lt; T, DefaultValue, Dimension &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>Class of The multi-dimensional sparse matrix.  
+ <a href="classotus_1_1Matrix.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="matrix_8hpp_source.html">matrix.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix_1_1Iterator.html">Iterator</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix_1_1Layout_3_010_00_01Types_8_8_8_4.html">Layout&lt; 0, Types...&gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix_1_1TupleHash.html">TupleHash</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4ab09450295d63606e5bbd1930ba69c8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a4ab09450295d63606e5bbd1930ba69c8">size</a> () const noexcept</td></tr>
-<tr class="separator:a4ab09450295d63606e5bbd1930ba69c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab02b7253a4006f621f7527d492746fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#aab02b7253a4006f621f7527d492746fa">Matrix</a> ()=default</td></tr>
+<tr class="separator:aab02b7253a4006f621f7527d492746fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad042527cde8b6aadc692513a448ade0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#aad042527cde8b6aadc692513a448ade0">~Matrix</a> ()=default</td></tr>
+<tr class="separator:aad042527cde8b6aadc692513a448ade0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aa8a9da5fe57452f823c89648a2548f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a0aa8a9da5fe57452f823c89648a2548f">Matrix</a> (const <a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;other) noexcept</td></tr>
+<tr class="separator:a0aa8a9da5fe57452f823c89648a2548f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ff6fdcf291785e1594cac0213a1964"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a20ff6fdcf291785e1594cac0213a1964">Matrix</a> (<a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:a20ff6fdcf291785e1594cac0213a1964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac027f32ea9a305076214ad611b727625"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#ac027f32ea9a305076214ad611b727625">Matrix</a> (std::initializer_list&lt; std::pair&lt; const TupleKey, T &gt;&gt; list)</td></tr>
+<tr class="separator:ac027f32ea9a305076214ad611b727625"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0180d333009f2b78d83f965ea29c33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#aec0180d333009f2b78d83f965ea29c33">operator=</a> (const <a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;other)</td></tr>
+<tr class="separator:aec0180d333009f2b78d83f965ea29c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a963e9cab63f085571ea4c7d155602808"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a963e9cab63f085571ea4c7d155602808">operator=</a> (<a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;&amp;other) noexcept</td></tr>
+<tr class="separator:a963e9cab63f085571ea4c7d155602808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75941435295e90ac42fd2cf1c21cc240"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a75941435295e90ac42fd2cf1c21cc240">operator==</a> (const <a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;other) const </td></tr>
+<tr class="separator:a75941435295e90ac42fd2cf1c21cc240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c7e5858599bb718274cda43843d55b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a28c7e5858599bb718274cda43843d55b">operator!=</a> (const <a class="el" href="classotus_1_1Matrix.html">Matrix</a> &amp;other) const </td></tr>
+<tr class="separator:a28c7e5858599bb718274cda43843d55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad2bc4c94583d62360d851e327401f28"><td class="memItemLeft" align="right" valign="top">NextLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#aad2bc4c94583d62360d851e327401f28">operator[]</a> (size_t idx)</td></tr>
+<tr class="separator:aad2bc4c94583d62360d851e327401f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eaff1f4d3a3cc032157e36fd6b39f3a"><td class="memItemLeft" align="right" valign="top">const NextLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a3eaff1f4d3a3cc032157e36fd6b39f3a">operator[]</a> (size_t idx) const </td></tr>
+<tr class="separator:a3eaff1f4d3a3cc032157e36fd6b39f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ee2d41295fdd772320d61d7e4413046"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a3ee2d41295fdd772320d61d7e4413046">begin</a> () const noexcept</td></tr>
+<tr class="separator:a3ee2d41295fdd772320d61d7e4413046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa68c81dd1f99fdbe37d5faf97d0e9480"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#aa68c81dd1f99fdbe37d5faf97d0e9480">end</a> () const noexcept</td></tr>
+<tr class="separator:aa68c81dd1f99fdbe37d5faf97d0e9480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1278d818714434ba899e4e5fe55cf091"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a1278d818714434ba899e4e5fe55cf091">size</a> () const noexcept</td></tr>
+<tr class="separator:a1278d818714434ba899e4e5fe55cf091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52a2a467dd9438a0e420f5fc2be64910"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classotus_1_1Matrix.html#a52a2a467dd9438a0e420f5fc2be64910">clear</a> () noexcept</td></tr>
+<tr class="memdesc:a52a2a467dd9438a0e420f5fc2be64910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the mapped matrix.  <a href="#a52a2a467dd9438a0e420f5fc2be64910">More...</a><br/></td></tr>
+<tr class="separator:a52a2a467dd9438a0e420f5fc2be64910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a4ab09450295d63606e5bbd1930ba69c8"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename T, T DefaultValue, size_t Dimension = 2&gt;<br/>
+class otus::Matrix&lt; T, DefaultValue, Dimension &gt;</h3>
+
+<p>Class of The multi-dimensional sparse matrix. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aab02b7253a4006f621f7527d492746fa"></a>
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t otus::Matrix::size </td>
+          <td class="memname"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::<a class="el" href="classotus_1_1Matrix.html">Matrix</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aad042527cde8b6aadc692513a448ade0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::~<a class="el" href="classotus_1_1Matrix.html">Matrix</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0aa8a9da5fe57452f823c89648a2548f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::<a class="el" href="classotus_1_1Matrix.html">Matrix</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classotus_1_1Matrix.html">Matrix</a>&lt; T, DefaultValue, Dimension &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a20ff6fdcf291785e1594cac0213a1964"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::<a class="el" href="classotus_1_1Matrix.html">Matrix</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classotus_1_1Matrix.html">Matrix</a>&lt; T, DefaultValue, Dimension &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac027f32ea9a305076214ad611b727625"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::<a class="el" href="classotus_1_1Matrix.html">Matrix</a> </td>
+          <td>(</td>
+          <td class="paramtype">std::initializer_list&lt; std::pair&lt; const TupleKey, T &gt;&gt;&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3ee2d41295fdd772320d61d7e4413046"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return an input iterator to the beginning </p>
+<dl class="section return"><dt>Returns</dt><dd>Input iterator to the begining </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a52a2a467dd9438a0e420f5fc2be64910"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clears the mapped matrix. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa68c81dd1f99fdbe37d5faf97d0e9480"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Return an input iterator to the end </p>
+<dl class="section return"><dt>Returns</dt><dd>Input iterator to the end </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a28c7e5858599bb718274cda43843d55b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classotus_1_1Matrix.html">Matrix</a>&lt; T, DefaultValue, Dimension &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aec0180d333009f2b78d83f965ea29c33"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classotus_1_1Matrix.html">Matrix</a>&amp; <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classotus_1_1Matrix.html">Matrix</a>&lt; T, DefaultValue, Dimension &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a963e9cab63f085571ea4c7d155602808"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classotus_1_1Matrix.html">Matrix</a>&amp; <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classotus_1_1Matrix.html">Matrix</a>&lt; T, DefaultValue, Dimension &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a75941435295e90ac42fd2cf1c21cc240"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classotus_1_1Matrix.html">Matrix</a>&lt; T, DefaultValue, Dimension &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aad2bc4c94583d62360d851e327401f28"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NextLayout <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3eaff1f4d3a3cc032157e36fd6b39f3a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const NextLayout <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1278d818714434ba899e4e5fe55cf091"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , T DefaultValue, size_t Dimension = 2&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t <a class="el" href="classotus_1_1Matrix.html">otus::Matrix</a>&lt; T, DefaultValue, Dimension &gt;::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
